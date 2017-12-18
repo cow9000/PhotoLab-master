@@ -138,6 +138,18 @@ public class Picture extends SimplePicture
 	    }
   }
   
+  public void fixUnderwater() {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	    	  	if(pixelObj.getBlue() > 150 && pixelObj.getRed() < 21)
+	        pixelObj.setBlue(255);
+	      }
+	    }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -265,7 +277,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("water.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.fixUnderwater();
     beach.explore();
   }
   
